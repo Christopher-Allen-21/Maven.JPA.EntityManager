@@ -32,7 +32,7 @@ public class CdService {
         temp.setTitle(cd.getTitle());
         temp.setDescription(cd.getDescription());
         temp.setYear(cd.getYear());
-        temp.setArtist(cd.getArtist());
+        temp.setArtists(cd.getArtists());
         temp.setPrice(cd.getPrice());
         return repository.save(temp);
     }

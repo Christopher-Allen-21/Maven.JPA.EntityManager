@@ -2,25 +2,27 @@ package entities;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Cd {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", updatable = false, nullable = false)
     private long id;
     private String title;
     private String description;
     private int year;
-    @ManyToOne
-    private Artist artist;
+    @OneToMany
+    private Set<Artist> artists = new HashSet<Artist>();
     private double price;
 
-    public Cd(String title, String description, int year, Artist artist, double price) {
+    public Cd(String title, String description, int year, double price) {
         this.title = title;
         this.description = description;
         this.year = year;
-        this.artist = artist;
         this.price = price;
     }
 
@@ -60,12 +62,12 @@ public class Cd {
         this.year = year;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public Set<Artist> getArtists() {
+        return artists;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 
     public double getPrice() {
