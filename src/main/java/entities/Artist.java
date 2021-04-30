@@ -1,19 +1,24 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id",updatable = false, nullable = false)
     private long id;
+    @Column(name = "first_Name")
     private String firstName;
+    @Column(name = "last_Name")
     private String lastName;
+
     private String genre;
+    @OneToMany
+    private Set<Cd> cdSet = new HashSet<Cd>();
 
     public Artist(String firstName, String lastName, String genre) {
         this.firstName = firstName;
